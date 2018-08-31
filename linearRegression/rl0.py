@@ -38,7 +38,6 @@ deneyim_deger = 11 # how many years experience you have
 maas_yeni = np.round((b0 + b1*deneyim_deger),2)
 print("Salary expection with {} years experience is {}".format(deneyim_deger,maas_yeni))
 
- sdf3
 print(linear_reg.predict(11))
 
 array = np.array([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]).reshape(-1,1)#deneyim
