@@ -7,15 +7,15 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 # ; is my seperator
-df = pd.read_csv("multiple-linear-regression-dataset.csv",sep=";")
+df = pd.read_csv("multiple-linear-regression-dataset.csv", sep=";")
 print(df)
-# whole rows and take only zero and second column 
-x = df.iloc[:,[0,2]].values
-y = df.maas.values.reshape(-1,1)
+# whole rows and take only zero and second column
+x = df.iloc[:, [0, 2]].values
+y = df.maas.values.reshape(-1, 1)
 
 multiple_linear_regression = LinearRegression()
 # give us a line fit with x and y values
-multiple_linear_regression.fit(x,y)
+multiple_linear_regression.fit(x, y)
 
 # b1 constant/bias
 # maas_yeni = np.round((b0 + b1*deneyim_deger),2)
@@ -25,6 +25,6 @@ print("b1, b2: ", multiple_linear_regression.coef_)
 # make prediction
 # we have experience and age for future values
 # first value is experience and second values is age
-a = multiple_linear_regression.predict(np.array([[10,35],[5,35]]))
+a = multiple_linear_regression.predict(np.array([[10, 35], [5, 35]]))
 
 print(a)
