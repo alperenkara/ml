@@ -2,7 +2,7 @@ import pandas as  pd
 import matplotlib.pyplot as plt
 import numpy as np
 # importing data
-df = pd.read_csv(r'C:\Users\PLALKAR1\Documents\GitHub\ml\randomForestReg\random-forest-regression-dataset.csv',sep=";",header= None)
+df = pd.read_csv('random-forest-regression-dataset.csv',sep=";",header= None)
 # take whole rows and column in the zero
 # convert to numpy and reshape
 x = df.iloc[:,0].values.reshape(-1,1)
