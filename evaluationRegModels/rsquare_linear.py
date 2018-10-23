@@ -7,7 +7,7 @@ df = pd.read_csv(r"C:\Users\PLALKAR1\Documents\GitHub\ml\evaluationRegModels\lin
 plt.scatter(df.deneyim,df.maas)
 plt.xlabel("deneyim")
 plt.ylabel("maas")
-plt.show()
+
 
 
 from sklearn.linear_model import LinearRegression
@@ -22,3 +22,8 @@ linear_reg.fit(x,y)
 y_head = linear_reg.predict(x) # prediction of salary
 
 plt.plot(x, y_head, color = "red")
+plt.show()
+
+from sklearn.metrics import r2_score
+
+print('r_square score: {}'.format((r2_score(y,y_head))))
