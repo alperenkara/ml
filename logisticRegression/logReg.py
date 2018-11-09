@@ -25,4 +25,6 @@ x_data = data.drop(["diagnosis"], axis=1)
 
 x = (x_data - np.min(x_data))/(np.max(x_data)-np.min(x_data)).values
 
-print(x)
+# train test split
+# %80 is train set %20 test set
+
