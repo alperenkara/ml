@@ -5,13 +5,14 @@
 
 # learning rate must have choosen wisely
 # hyperparameter -> tuned parameters
-
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+print(os.listdir("../ml/logisticRegression/"))
 # data = pd.read_csv("D:\mygit\\ml\\logisticRegression\data.csv")
-data = pd.read_csv("C:\\Users\\alper\\Documents\\GitHub\ml\\logisticRegression\\data.csv")
+# data = pd.read_csv("C:\\Users\\alper\\Documents\\GitHub\ml\\logisticRegression\\data.csv")
+data = pd.read_csv("../ml/logisticRegression/data.csv")
 # erasing unnecessary columns
 data.drop(["Unnamed: 32", "id"], axis=1, inplace=True)
 # print(data.info())
@@ -68,5 +69,9 @@ def forward_backward_propagation(w,b,x_train,y_train):
     z = np.dot(w.T,x_train)+b
     y_head = sigmoid(z)
     # lost function
-     lost = -(1-y_train)*np.log(1-y_head)+y_train*np.log(y_head)
-     cost = (np.sum(loss))/x_train.shape[1]    #for scaling
+    lost = -(1-y_train)*np.log(1-y_head)+y_train*np.log(y_head)
+    cost = (np.sum(loss))/x_train.shape[1]    #for scaling
+
+    # backward propagation
+    derivative_weight = (np.dot(x_train,((y_head-y_train).T)))/x_train.shape[1]
+
