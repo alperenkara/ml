@@ -147,3 +147,14 @@ def logistic_regression(x_train, y_train, x_test, y_test, learning_rate, number_
 
 logistic_regression(x_train, y_train, x_test, y_test,
                     learning_rate=1, number_of_iteration=50)
+"""
+with sklearn
+"""
+from sklearn.linear_model import LogisticRegression
+
+lr = LogisticRegression()
+
+lr.fit(x_train.T,y_train.T) 
+# transpose (30,455) 30 samples, 455 features
+# with transpose (455,30)
+print("testing accuracy {}".format(lr.score(x_test.T,y_test.T)))
