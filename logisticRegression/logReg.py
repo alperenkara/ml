@@ -35,8 +35,8 @@ x = (x_data - np.min(x_data))/(np.max(x_data)-np.min(x_data)).values
 
 from sklearn.model_selection import train_test_split
 # split with unique 42
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.2, random_state=42)
+# x-> everything except diagnosis, y->binary diagnosis values
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 # make transpoze
 x_train = x_train.T
 x_test = x_test.T
@@ -53,7 +53,18 @@ def initialize_weights_and_bias(dimension):
     w = np.full((dimension, 1), 0.01)
     b = 0.0
     return w, b
-
+"""
+(array([[0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01],
+        [0.01]]), 0.0)
+"""
 
 def sigmoid(z):
     y_head = 1/(1+np.exp(-z))
@@ -61,7 +72,8 @@ def sigmoid(z):
 
 
 def dRelu(z):
-    return np.where(z <= 0, 0, 1)
+    return np.greater(z, 0.1).astype(float)
+
 # w:weight
 # b:bias
 # x_train: cancer cell feature
@@ -74,10 +86,10 @@ def forward_backward_propagation(w, b, x_train, y_train):
     # (1,30)*(30,455)
     # that is why I am going to have transpoze of weight matrix
     z = np.dot(w.T, x_train)+b
-    y_head = sigmoid(z)
+    y_head = dRelu(z)
     # loss function
     loss = -(1-y_train)*np.log(1-y_head)+y_train*np.log(y_head)
-    #loss = -y_train*np.log(y_head)-(1-y_train)*np.log(1-y_head)
+    # loss = -y_train*np.log(y_head)-(1-y_train)*np.log(1-y_head)
     cost = (np.sum(loss))/x_train.shape[1]  # for scaling
 
     # backward propagation
@@ -123,7 +135,7 @@ def update(w, b, x_train, y_train, learning_rate, number_of_iteration):
 
 def predict(w, b, x_test):
 
-    z = sigmoid(np.dot(w.T, x_test)+b)
+    z = dRelu(np.dot(w.T, x_test)+b)
     Y_prediction = np.zeros((1, x_test.shape[1]))
     for i in range(z.shape[1]):
         if z[0, i] <= 0.5:
@@ -153,6 +165,7 @@ logistic_regression(x_train, y_train, x_test, y_test,
 """
 with sklearn
 """
+"""
 from sklearn.linear_model import LogisticRegression
 
 lr = LogisticRegression()
@@ -161,3 +174,4 @@ lr.fit(x_train.T,y_train.T)
 # transpose (30,455) 30 samples, 455 features
 # with transpose (455,30)
 print("testing accuracy {}".format(lr.score(x_test.T,y_test.T)))
+"""
