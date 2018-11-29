@@ -2,5 +2,6 @@
     "python.pythonPath": "C:\\Users\\PLALKAR1\\AppData\\Local\\Programs\\Python\\Python36\\python.exe",
     "python.linting.pylintEnabled": false,
     "python.linting.pep8Enabled": true,
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "editor.fontSize": 18
 }

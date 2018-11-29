@@ -12,6 +12,9 @@ import matplotlib.pyplot as plt
 print(os.listdir("../ml/logisticRegression/"))
 # data = pd.read_csv("D:\mygit\\ml\\logisticRegression\data.csv")
 # data = pd.read_csv("C:\\Users\\alper\\Documents\\GitHub\ml\\logisticRegression\\data.csv")
+"""
+    Cancer Diagnosis 
+"""
 data = pd.read_csv("../ml/logisticRegression/data.csv")
 # erasing unnecessary columns
 data.drop(["Unnamed: 32", "id"], axis=1, inplace=True)
