@@ -86,7 +86,7 @@ def forward_backward_propagation(w, b, x_train, y_train):
     # (1,30)*(30,455)
     # that is why I am going to have transpoze of weight matrix
     z = np.dot(w.T, x_train)+b
-    y_head = dRelu(z)
+    y_head = sigmoid(z)
     # loss function
     loss = -(1-y_train)*np.log(1-y_head)+y_train*np.log(y_head)
     # loss = -y_train*np.log(y_head)-(1-y_train)*np.log(1-y_head)
@@ -135,7 +135,7 @@ def update(w, b, x_train, y_train, learning_rate, number_of_iteration):
 
 def predict(w, b, x_test):
 
-    z = dRelu(np.dot(w.T, x_test)+b)
+    z = sigmoid(np.dot(w.T, x_test)+b)
     Y_prediction = np.zeros((1, x_test.shape[1]))
     for i in range(z.shape[1]):
         if z[0, i] <= 0.5:
