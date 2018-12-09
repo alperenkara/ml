@@ -42,5 +42,29 @@ print(squares)
 
 squares = []
 for i in range(10):
-    squares.append(i**2)
     print(squares)
+    squares.append(i**2)
+
+upper = [x.upper() for x in ["a","b","c"]]
+print(upper)
+
+lower = [x.lower() for x in ["ALPEREN","HALIL","OTHERS"]]
+print(lower)
+
+string = "Hello 232423 Krakow with 609324023" 
+numbers = [x for x in string if x.isdigit()]
+print(numbers)
+
+string = "Hello 232423 Krakow with 609324023" 
+numbers = [x for x in string if x.isalpha()]
+print(numbers)
+
+fh = open("text.txt",'r')
+result = [i for i in fh if "line3" in i]
+print(result)
+
+def double(x):
+    return x**2
+
+even = [double(x) for x in range(25) if x%2==0]
+print(even)
