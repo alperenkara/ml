@@ -32,12 +32,36 @@ dictionary = {"x":x,"y":y}
 
 data = pd.DataFrame(dictionary)
 
-plt.scatter(x1,y1,color="black")
-plt.scatter(x2,y2,color="black")
-plt.scatter(x3,y3,color="black")
+#plt.scatter(x1,y1,color="black")
+#plt.scatter(x2,y2,color="black")
+#plt.scatter(x3,y3,color="black")
+#plt.show()
+
+from sklearn.cluster import KMeans
+wcss = []
+
+for k in range(1,15):
+    # to finding best k value
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(data)
+    # inertia->wcss
+    wcss.append(kmeans.inertia_)
+
+
+#plt.plot(range(1,15),wcss)
+#plt.xlabel("cluster value")
+#plt.ylabel("wcss")
+#plt.show()
+
+
+kmeans2 = KMeans(n_clusters=3)
+clusters = kmeans2.fit_predict(data)
+
+data["label"] = clusters
+
+plt.scatter(data.x[data.label == 0],data.y[data.label == 0],color = "red")
+plt.scatter(data.x[data.label == 1],data.y[data.label == 1],color = "green")
+plt.scatter(data.x[data.label == 2],data.y[data.label == 2],color = "blue")
+plt.scatter(kmeans2.cluster_centers_[:,0],kmeans2.cluster_centers_[:,1],color = "yellow")
+
 plt.show()
-
-
-
-
-
