@@ -49,3 +49,16 @@ dendrogram(merg,leaf_rotation = 90)
 plt.xlabel("data points")
 plt.ylabel("euclidean distance")
 plt.show()
+
+# %%% HC
+from sklearn.cluster import AgglomerativeClustering
+
+hierartical_cluster = AgglomerativeClustering(n_clusters = 3, affinity= "euclidean", linkage = "ward")
+cluster = hierartical_cluster.fit_predict(data)
+
+data["label"] = cluster 
+
+plt.scatter(data.x[data.label == 0],data.y[data.label == 0],color="green")
+plt.scatter(data.x[data.label == 1],data.y[data.label == 1],color="blue")
+plt.scatter(data.x[data.label == 2],data.y[data.label == 2],color="red")
+# %%%
