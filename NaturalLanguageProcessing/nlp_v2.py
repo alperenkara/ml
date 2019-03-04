@@ -99,6 +99,28 @@ sparce_matrix = count_vectorizer.fit_transform(description_list).toarray() # tra
 
 print("en sik kullanilan {} kelimeler: {}".format(max_features,count_vectorizer.get_feature_names())) # show frequency of words
 
+# creating ML model: 
+# %%
+y = data.iloc[:,0].values # male or female classes
+x = sparce_matrix
+# train test split
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size = 0.1, random_state = 42)
+
+# naive bayes model
+# %%
+from sklearn.naive_bayes import GaussianNB
+
+nb = GaussianNB()
+
+nb.fit(x_train,y_train)
+# %%
+# prediction
+y_pred = nb.predict(x_test)
+print("accuracy: ", nb.score(y_pred.reshape(-1,1),y_test))
+
+
 
 
 
