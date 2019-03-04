@@ -5,7 +5,8 @@
 import pandas as pd
 
 #  import twitter data
-data = pd.read_csv(r"D:\\mygit\\ml\\NaturalLanguageProcessing\gender-classifier.csv",encoding = "latin1")
+# data = pd.read_csv(r"D:\\mygit\\ml\\NaturalLanguageProcessing\gender-classifier.csv",encoding = "latin1")
+data = pd.read_csv(r"C:\Users\alper\Documents\GitHub\ml\NaturalLanguageProcessing\gender-classifier.csv",encoding="latin")
 data = pd.concat([data.gender,data.description],axis=1)
 data.dropna(axis = 0,inplace = True)
 data.gender = [1 if each == "female" else 0 for each in data.gender]
@@ -83,6 +84,22 @@ nb.fit(x_train,y_train)
 y_pred = nb.predict(x_test)
 
 print("accuracy: ",nb.score(y_pred.reshape(-1,1),y_test))
+
+# bag of words
+#####################
+# firstly take each word and assign as a feature
+# then create bag of words matrix
+
+# bag of words methods
+from sklearn.feature_extraction.text import CountVectorizer 
+max_features = 500 # choose max. 500 words
+
+count_vectorizer = CountVectorizer(max_features = max_features,stop_words="english")
+sparce_matrix = count_vectorizer.fit_transform(description_list).toarray() # transform to numpy array 
+
+print("en sik kullanilan {} kelimeler: {}".format(max_features,count_vectorizer.get_feature_names())) # show frequency of words
+
+
 
 
 
