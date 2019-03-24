@@ -60,7 +60,7 @@ x = x[:100,:]
 y = y[:100]
 
 from sklearn.linear_model import LogisticRegression 
-
+# c-> Regularization Parameter, if it is hight overfit, too low underfit
 grid = {"C":np.logspace(-3,3,7),"penalty":["11","12"]} # L1=lasso and l2=ridge
 
 logreg = LogisticRegression()
